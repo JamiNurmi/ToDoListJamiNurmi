@@ -23,8 +23,13 @@ function TodoList() {
         }
     };
 
+    // Funktio, joka poistaa tehtävän
+    const deleteTodo = (index) => {
+        setTodos(todos.filter((todo, i) => i !== index));
+    };
+
     return (
-        <>
+        <div className="todo-container">
             <input
                 type="text"
                 placeholder="Description"
@@ -36,9 +41,10 @@ function TodoList() {
                 onChange={handleDateChange}
                 value={date}
             />
-            <button onClick={addTodo}>Add</button>
-            <TodoTable todos={todos} />
-        </>
+            <button type="button" onClick={addTodo}>Add</button>
+
+            <TodoTable todos={todos} deleteTodo={deleteTodo} />
+        </div>
     );
 }
 

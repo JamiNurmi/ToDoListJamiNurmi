@@ -1,37 +1,43 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./app.css"; // Varmista, että tyylitiedosto on olemassa
 
-function TodoTable({ todos }) {
+function TodoTable({ todos, deleteTodo }) {
     return (
-        <table className="todo-table">
+        <table>
             <thead>
                 <tr>
                     <th>Description</th>
                     <th>Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {todos.length > 0 ? (
-                    todos.map((item, index) => (
+                {todos.length === 0 ? (
+                    <tr>
+                        <td colSpan="3" style={{ textAlign: "center", padding: "10px" }}>
+                            Ei vielä tehtäviä
+                        </td>
+                    </tr>
+                ) : (
+                    todos.map((todo, index) => (
                         <tr key={index}>
-                            <td>{item.description}</td>
-                            <td>{item.date}</td>
+                            <td>{todo.description}</td>
+                            <td>{todo.date}</td>
+                            <td>
+                                <button
+                                    className="delete"
+                                    type="button"
+                                    onClick={() => deleteTodo(index)}
+                                >
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                     ))
-                ) : (
-                    <tr>
-                        <td colSpan="2">No tasks added</td>
-                    </tr>
                 )}
             </tbody>
         </table>
     );
 }
-
-// PropTypes-tarkistus
-TodoTable.propTypes = {
-    todos: PropTypes.array.isRequired,
-};
 
 export default TodoTable;

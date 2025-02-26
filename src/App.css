@@ -32,6 +32,17 @@ button:active {
   transform: scale(0.95);
 }
 
+.delete {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.delete:hover {
+  background-color: darkred;
+  border: none;
+}
+
 .todo-container {
   max-width: 500px;
   width: 100%;
@@ -45,9 +56,11 @@ button:active {
 input {
   padding: 10px;
   margin: 5px 0;
-  width: 100%;
-  border: 1px solid #ccc;
+  width: 90%;
+  border: 1px solid #ddd;
   border-radius: 5px;
+  background-color: black;
+  color: white;
 }
 
 table {
@@ -69,8 +82,29 @@ table td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
+  color: black;
 }
 
 table tr:nth-child(even) {
   background: #f9f9f9;
+}
+
+/* Responsiivisuus */
+@media (max-width: 600px) {
+  .todo-container {
+    padding: 15px;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.8em;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
 }
