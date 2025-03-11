@@ -1,13 +1,15 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: white;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f4f9;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  color: #333;
 }
 
 button {
@@ -17,94 +19,44 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #007bff;
-  color: white;
+  background-color: #1a1a1a;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: border-color 0.25s;
+  color: white;
 }
 
 button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-.delete {
-  background-color: red;
-  color: white;
-  cursor: pointer;
-}
-
-.delete:hover {
-  background-color: darkred;
-  border: none;
-}
-
-.todo-container {
-  max-width: 500px;
-  width: 100%;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-input {
-  padding: 10px;
-  margin: 5px 0;
-  width: 90%;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: black;
-  color: white;
+  background-color: #333;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  background: white;
-  border-radius: 5px;
-  overflow: hidden;
+  background-color: white;
 }
 
 table th {
-  background: #007bff;
-  color: white;
+  background-color: #f2f2f2;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
 }
 
-table td {
-  border: 1px solid #ddd;
+.buttons {
+  display: flex;
+  gap: 5px;
   padding: 10px;
-  text-align: center;
-  color: black;
-}
-
-table tr:nth-child(even) {
-  background: #f9f9f9;
-}
-
-/* Responsiivisuus */
-@media (max-width: 600px) {
-  .todo-container {
-    padding: 15px;
-  }
-
-  input {
-    width: 100%;
-  }
-
-  button {
-    width: 100%;
-    padding: 0.8em;
-  }
-
-  table {
-    font-size: 0.9em;
-  }
+  justify-content: center;
 }

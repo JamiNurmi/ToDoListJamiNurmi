@@ -1,42 +1,29 @@
-import React from "react";
-import "./app.css"; // Varmista, että tyylitiedosto on olemassa
+import React, { useRef } from "react";
+import { AgGridReact } from "ag-grid-react";
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-function TodoTable({ todos, deleteTodo }) {
+ModuleRegistry.registerModules([AllCommunityModule]);
+
+function TodoTable(props) {
+    const gridRef = useRef();
+    const todos = props.todos;
+    const columnDefs = [
+        { headerName: "Description", field: "desc", sortable: true, filter: true },
+        { headerName: "Priority", field: "priority", sortable: true, filter: true, cellStyle: params => params.value === "High" || "high" ? { color: 'red' } : { color: 'black' } },
+        { headerName: "Due Date", field: "date", sortable: true, filter: true }
+    ];
+
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {todos.length === 0 ? (
-                    <tr>
-                        <td colSpan="3" style={{ textAlign: "center", padding: "10px" }}>
-                            Ei vielä tehtäviä
-                        </td>
-                    </tr>
-                ) : (
-                    todos.map((todo, index) => (
-                        <tr key={index}>
-                            <td>{todo.description}</td>
-                            <td>{todo.date}</td>
-                            <td>
-                                <button
-                                    className="delete"
-                                    type="button"
-                                    onClick={() => deleteTodo(index)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))
-                )}
-            </tbody>
-        </table>
+        <div className="ag-theme-alpine" style={{ width: 700, height: 500 }}>
+            <AgGridReact
+                ref={gridRef}
+                onGridReady={params => gridRef.current = params.api}
+                rowData={todos}
+                columnDefs={columnDefs}
+                rowSelection="single"
+            />
+        </div>
     );
 }
 
